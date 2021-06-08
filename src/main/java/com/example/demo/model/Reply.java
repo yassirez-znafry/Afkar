@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -54,7 +54,7 @@ public class Reply {
         return userId;
     }
 
-    public void setUserId(long user_id) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
