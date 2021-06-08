@@ -23,6 +23,8 @@ public class StoryController {
 
     @RequestMapping(value = "/api/story", method = RequestMethod.POST)
     public ResponseEntity<Story> createStory(@RequestBody Story story) {
+        User user = authService.getCurrentUser();
+        story.setUserId(user.getUserId());
         return ResponseEntity.status(HttpStatus.CREATED).body(storyService.createStory(story));
     }
 
@@ -34,12 +36,16 @@ public class StoryController {
 
     @RequestMapping(value = "/api/story/{id}", method = RequestMethod.DELETE)
     public void deletStory(@PathVariable Long id) {
-         storyService.deletStory(id);
+        User user = authService.getCurrentUser();
+        assert (user.getUserId()==storyService.getStory(id).get().getUserId());
+        storyService.deletStory(id);
     }
 
 
     @RequestMapping(value = "/api/story/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Story> updateStory(@RequestBody Story story) {
+    public ResponseEntity<Story> updateStory(@PathVariable long story_id, @RequestBody Story story) {
+        User user = authService.getCurrentUser();
+        assert (user.getUserId()==storyService.getStory(story_id).get().getUserId());
         return status(HttpStatus.OK).body(storyService.updateStory(story));
     }
 
