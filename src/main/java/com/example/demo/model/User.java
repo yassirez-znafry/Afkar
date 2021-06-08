@@ -34,4 +34,5 @@ public class User {
     private Instant dateCreaUser;
     @Nullable
     private boolean userEnabled;
+    private String image;
 }

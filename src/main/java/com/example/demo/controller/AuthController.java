@@ -1,13 +1,12 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.AuthenticationResponse;
-import com.example.demo.dto.LoginRequest;
-import com.example.demo.dto.RefreshTokenRequest;
-import com.example.demo.dto.RegisterRequest;
+import com.example.demo.dto.*;
+import com.example.demo.model.User;
 import com.example.demo.service.AuthService;
 import com.example.demo.service.RefreshTokenService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,6 +50,24 @@ public class AuthController {
     public ResponseEntity<String> logout(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
         refreshTokenService.deleteRefreshToken(refreshTokenRequest.getRefreshToken());
         return ResponseEntity.status(OK).body("Refresh Token Deleted Successfully!!");
+    }
+
+    @GetMapping("/user/{id}")
+    public UserInfos UserInfos(@PathVariable long id) throws JSONException {
+
+        User user = authService.getUserById(id);
+        UserInfos userInfos = new UserInfos(user.getUserName(), user.getUserEmail(), user.getImage(), user.getUserId());
+        return userInfos;
+
+    }
+
+    @GetMapping("/user/myInfos")
+    public UserInfos UserInfos() throws JSONException {
+        User user = authService.getUserById(authService.getCurrentUser().getUserId());
+
+        UserInfos userInfos = new UserInfos(user.getUserName(), user.getUserEmail(), user.getImage(), user.getUserId());
+        return userInfos;
+
     }
 
 }
