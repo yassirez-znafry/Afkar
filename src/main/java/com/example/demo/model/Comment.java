@@ -23,8 +23,8 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private long id;
-    private long story_id;
-    private long user_id;
+    private long storyId;
+    private long userId;
     private String content;
     private Timestamp created_at;
 
@@ -40,20 +40,20 @@ public class Comment {
         this.id = id;
     }
 
-    public long getStory_id() {
-        return story_id;
+    public long getStoryId() {
+        return storyId;
     }
 
-    public void setStory_id(long story_id) {
-        this.story_id = story_id;
+    public void setStoryId(long story_id) {
+        this.storyId = storyId;
     }
 
-    public long getUser_id() {
-        return user_id;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(long user_id) {
-        this.user_id = user_id;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public String getContent() {

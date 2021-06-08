@@ -51,7 +51,7 @@ public class AuthService {
         userRepository.save(user);
 
         String token = generateVerificationToken(user);
-        mailService.sendMail(new NotificationEmail("please activate your account", user.getUserEmail(), "Thank you for signing up to Spring Reddit, " +
+        mailService.sendMail(new NotificationEmail("please activate your account", user.getUserEmail(), "Thank you for signing up to Afkar, " +
                 "please click on the below url to activate your account : " +
                 "http://localhost:8080/api/auth/accountVerification/" + token));
 

@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,5 +34,9 @@ public class CommentService {
     @Transactional
     public void delete(Long id){
         commentRepository.deleteById(id);
+    }
+
+    public Optional<List<Comment>> getAllCommentsOfAStory(Long story_id) {
+        return  commentRepository.findCommentsByStoryId(story_id);
     }
 }
