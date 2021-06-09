@@ -75,6 +75,14 @@ public class StoryController {
 
 
 
+    @RequestMapping(value = "/api/like/story/{story_id}", method = RequestMethod.POST)
+    public void createStory(@PathVariable long story_id) {
+        Optional<Story> story = storyService.getStory(story_id);
+        story.get().setTotalLikes(story.get().getTotalLikes()+1);
+    }
+
+
+
 
 
 
