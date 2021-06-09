@@ -10,4 +10,5 @@ import java.util.Optional;
 @Repository
 public interface StoryRepository extends JpaRepository<Story, Long> {
     Optional<List<Story>>  findStoriesByUserId(Long userId);
+    Optional<Story> findTopByOrderByIdDesc();
 }

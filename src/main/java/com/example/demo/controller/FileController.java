@@ -35,7 +35,7 @@ public class FileController {
     @Autowired
     private FileStorageService storageService;
 
-    @Value("${app.upload.dir:${user.home}}")
+    @Value("${user.home}" + "/Desktop/Nouveau/afkar-react/public/img/")
     public String uploadDir;
 
 

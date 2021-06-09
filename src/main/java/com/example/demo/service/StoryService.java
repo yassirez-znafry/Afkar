@@ -51,4 +51,9 @@ public class StoryService {
     public Optional<List<Story>>  getStoriesByUser(long id){
         return storyRepository.findStoriesByUserId(id);
     }
+
+    @Transactional
+    public Optional<Story> getLastStory(){
+        return storyRepository.findTopByOrderByIdDesc();
+    }
 }

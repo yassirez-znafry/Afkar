@@ -25,6 +25,7 @@ public class StoryController {
     public ResponseEntity<Story> createStory(@RequestBody Story story) {
         User user = authService.getCurrentUser();
         story.setUserId(user.getUserId());
+        story.setImage("imgs/"+storyService.getLastStory().get().getImage());
         return ResponseEntity.status(HttpStatus.CREATED).body(storyService.createStory(story));
     }
 
